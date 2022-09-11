@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "~": "./src",
+          "~Layout": "./src/Layout",
+          "~constants": "./src/constants",
+          "~Pages": "./src/Pages",
+          "~services": "./src/services",
+          "~utils": "./src/utils",
+          "~stores": "./src/stores",
+          "~assets": "./src/assets",
+          "~Providers": "./src/Providers",
+          "~Routes": "./src/Routes"
+        }
+      }
+    ]
+  ]
+}
