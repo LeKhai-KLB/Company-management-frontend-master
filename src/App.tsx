@@ -1,12 +1,13 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { AppProvider } from "~Provider";
 import { AppRoutes } from "~Routes";
+import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <div className="app">
+      <AppProvider>
         <AppRoutes />
-      </Router>
+      </AppProvider>
     </div>
   );
 }

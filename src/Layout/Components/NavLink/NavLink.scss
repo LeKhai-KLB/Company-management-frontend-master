@@ -1,0 +1,38 @@
+@import "~styles/classes/classes.scss";
+
+.nav-link {
+  width: 100% !important;
+  padding: 24px 0px !important;
+  color: white;
+  background-color: transparent !important;
+  font-weight: 600;
+  text-align: left !important;
+  @extend .flex--center;
+  &:hover {
+    color: var(--moonstone-blue);
+    cursor: pointer;
+    .nav-link__dot {
+      visibility: visible !important;
+    }
+  }
+}
+
+.nav-link--active {
+  color: var(--moonstone-blue);
+}
+
+.nav-link__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--moonstone-blue);
+  margin-right: 20px;
+}
+
+.nav-link__icon {
+  margin-right: 20px;
+}
+
+.nav-link__content {
+  width: 20%;
+}

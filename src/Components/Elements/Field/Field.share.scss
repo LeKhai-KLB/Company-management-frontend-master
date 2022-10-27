@@ -1,0 +1,38 @@
+.field__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px !important;
+  height: 100%;
+}
+
+.field__show-text-button {
+  height: 100%;
+  background-color: var(--normal-grey);
+  padding: 8px 16px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.field__app-variant {
+  background-color: var(--blue-gray);
+  border: 2px solid var(--blue-gray);
+  &::placeholder {
+    color: #ccc !important;
+  }
+  &::-webkit-input-placeholder {
+    color: #ccc !important;
+  }
+  &::-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc !important;
+  }
+}
+
+.field__normal-variant {
+  background-color: var(--normal-grey);
+  border: 2px solid var(--normal-grey);
+}

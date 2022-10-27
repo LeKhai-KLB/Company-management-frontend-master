@@ -4,21 +4,36 @@
 :root {
   --dark-blue: #16213e;
   --light-blue: #0f3460;
-  --purple: #533483;
+  --dark-purple: #533483;
+  --light-purple: #845695;
   --pink: #e94560;
+  --pink-rgba: rgba(233, 69, 96, 0.04);
   --red: #eb1d36;
   --green: #2abb9b;
   --yellow: #ffcb42;
   --dark-grey: #202124;
   --white: #fbfbfb;
   --greyish: #acacac;
+  --light-grey: #eaeaea;
+  --gunmetal: #2c2d37;
+  --arsenic: #3f4154;
+  --blue-gray: #696c95;
+  --moonstone-blue: #74c0ca;
+  --black: #1a1a1a;
+  --grey: #363739;
+  --medium-grey: #262625;
+  --normal-grey: #3f434a;
 }
 
 html {
   font-size: 62.5% !important;
+  width: 100%;
+  height: 100%;
 }
 
 body {
+  width: 100%;
+  height: 100%;
   font-size: 1.6rem !important;
   line-height: 1.5 !important;
   font-stretch: normal !important;
@@ -28,11 +43,21 @@ body {
   color: var(--dark-grey) !important;
   text-rendering: optimizespeed !important;
   box-sizing: border-box !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -ms-box-sizing: border-box !important;
+  font-family: "Poppin", sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -ms-box-sizing: border-box !important;
 }
 
 .ic--small {
@@ -57,7 +82,7 @@ body {
   font-weight: 700;
 }
 
-.text--medium {
+%text--medium {
   font-size: 18px;
   font-weight: 500;
 }
@@ -85,4 +110,29 @@ body {
 .text--extra-large--bold {
   font-size: 32px;
   font-weight: 700;
+}
+
+::-webkit-scrollbar {
+  width: 8px !important;
+  background-color: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 8px !important;
+  background-color: var(--greyish) !important;
+  border-radius: 20px;
+}
+
+.display--none {
+  display: none !important;
+}
+
+.hover-effect {
+  &:hover {
+    opacity: 0.8 !important;
+  }
+}
+
+.visibility--hidden {
+  visibility: hidden !important;
 }

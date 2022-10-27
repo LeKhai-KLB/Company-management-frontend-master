@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?agyq9');
-  src:  url('fonts/icomoon.eot?agyq9#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?agyq9') format('truetype'),
-    url('fonts/icomoon.woff?agyq9') format('woff'),
-    url('fonts/icomoon.svg?agyq9#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?5kmc8v');
+  src:  url('fonts/icomoon.eot?5kmc8v#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?5kmc8v') format('truetype'),
+    url('fonts/icomoon.woff?5kmc8v') format('woff'),
+    url('fonts/icomoon.svg?5kmc8v#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,11 +25,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-file-powerpoint-o:before {
-  content: "\e901";
+.icon-edit:before {
+  content: "\e909";
+}
+.icon-tabs-outline:before {
+  content: "\e907";
+}
+.icon-live_tv:before {
+  content: "\e908";
+}
+.icon-note-list:before {
+  content: "\e906";
+}
+.icon-close-solid:before {
+  content: "\e90a";
+}
+.icon-close:before {
+  content: "\e904";
 }
 .icon-dots-horizontal-triple:before {
   content: "\e900";
+}
+.icon-folder:before {
+  content: "\e92f";
+}
+.icon-folder-open:before {
+  content: "\e930";
+}
+.icon-profile:before {
+  content: "\e923";
+}
+.icon-bin2:before {
+  content: "\e9ad";
+}
+.icon-view-show:before {
+  content: "\e903";
 }
 .icon-home3:before {
   content: "\e902";
@@ -39,12 +69,6 @@
 }
 .icon-mic:before {
   content: "\e91e";
-}
-.icon-folder:before {
-  content: "\e92f";
-}
-.icon-folder-open:before {
-  content: "\e930";
 }
 .icon-phone-hang-up:before {
   content: "\e943";
@@ -75,4 +99,10 @@
 }
 .icon-libreoffice:before {
   content: "\eae3";
+}
+.icon-eye-blocked:before {
+  content: "\e9d1";
+}
+.icon-file-powerpoint-o:before {
+  content: "\e901";
 }

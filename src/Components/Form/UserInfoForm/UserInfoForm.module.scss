@@ -1,0 +1,55 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.user-info-form__create_at_field {
+  font-weight: 600 !important;
+}
+
+.user-info-form__avatar-container {
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid white;
+  position: relative;
+  margin-bottom: 24px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.user-info-form__avatar-left-container {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+}
+
+.user-info-form__avatar-right-container {
+  height: 100%;
+  position: relative;
+  width: 180px;
+  @include mix-media("extra-small") {
+    width: 130px !important;
+  }
+}
+
+.user-info-form__avatar {
+  box-sizing: border-box !important;
+  width: 90%;
+  aspect-ratio: 1/1;
+  background-color: var(--light-purple);
+  border: 6px solid white;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  transform: translateY(35px);
+  @include mix-media("extra-small") {
+    transform: translateY(60px);
+  }
+}
+
+.delete-button {
+  margin-left: 8px;
+  color: white;
+  &:hover {
+    color: var(--pink);
+  }
+}

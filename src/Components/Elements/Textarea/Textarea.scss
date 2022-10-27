@@ -1,0 +1,37 @@
+.textarea {
+  box-sizing: border-box !important;
+  padding: 6px 16px;
+  outline: none;
+  border-radius: 4px;
+  font-weight: 500;
+  line-height: unset !important;
+  color: white;
+  resize: none;
+  overflow-y: auto;
+}
+
+.textarea--focus {
+  &:focus {
+    outline: none;
+    border: 2px solid white !important;
+  }
+}
+
+.textarea--read-only {
+  font-weight: 600;
+  color: var(--light-grey);
+  border: 2px solid var(--blue-gray);
+  &:focus {
+    outline: none;
+    border: 2px solid var(--blue-gray) !important;
+  }
+}
+
+.textarea--full-width {
+  width: 100%;
+}
+
+.textarea--invalid {
+  background-color: var(--pink-rgba) !important;
+  border: 2px solid var(--pink) !important;
+}

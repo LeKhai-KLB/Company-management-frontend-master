@@ -12,8 +12,11 @@
           "~utils": "./src/utils",
           "~stores": "./src/stores",
           "~assets": "./src/assets",
-          "~Providers": "./src/Providers",
-          "~Routes": "./src/Routes"
+          "~Provider": "./src/Provider",
+          "~Routes": "./src/Routes",
+          "~hooks": "./src/hooks",
+          "~Components": "./src/Components",
+          "~styles": "./src/assets/styles"
         }
       }
     ]

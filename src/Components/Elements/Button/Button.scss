@@ -1,0 +1,98 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.button--hover {
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.button--disabled {
+  opacity: 0.5 !important;
+  pointer-events: none;
+}
+
+.button--typography-bold {
+  font-weight: 600 !important;
+}
+
+.button--rounded {
+  border-radius: 50% !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  aspect-ratio: 1/1;
+}
+
+.button--extra-small {
+  font-size: 12px !important;
+}
+
+.button--small {
+  font-size: 14px !important;
+}
+
+.button--medium {
+  font-size: 16px !important;
+}
+
+.button--large {
+  font-size: 18px !important;
+}
+
+.button--extra-large {
+  font-size: 20px !important;
+}
+
+.button--basic {
+  text-transform: capitalize !important;
+  color: white;
+  padding: 8px 16px !important;
+  background-color: var(--blue-gray) !important;
+  @extend .button--hover;
+}
+
+.button--text {
+  @extend .button--basic;
+  background-color: transparent !important;
+}
+
+.button--submit {
+  @extend .button--basic;
+  background-color: var(--light-purple) !important;
+}
+
+.button--cancel {
+  @extend .button--basic;
+  background-color: var(--gunmetal) !important;
+}
+
+.button--danger {
+  @extend .button--basic;
+  background-color: var(--pink) !important;
+}
+
+.button--toggle-to-active {
+  @extend .button--cancel;
+  &:hover {
+    @include mix-media("medium", "large", "extra-large") {
+      opacity: unset !important;
+      background-color: var(--light-purple) !important;
+    }
+  }
+}
+
+.button--toggle-to-cancel {
+  @extend .button--submit;
+  &:hover {
+    @include mix-media("medium", "large", "extra-large") {
+      opacity: unset !important;
+      background-color: var(--medium-grey) !important;
+    }
+  }
+}
+
+.button__content-container {
+  position: relative;
+  overflow: hidden;
+  background-color: inherit;
+  z-index: 0;
+}

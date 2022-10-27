@@ -1,0 +1,20 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.register-form__direction {
+  color: var(--greyish);
+  margin-top: 24px !important;
+
+  @include mix-media(extra-small, small) {
+    font-size: 12px !important;
+  }
+
+  @include mix-media(medium, large, extra-large) {
+    font-size: 14px !important;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: white !important;
+  }
+}

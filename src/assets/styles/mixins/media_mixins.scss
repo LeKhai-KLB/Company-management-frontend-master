@@ -1,0 +1,58 @@
+$mediaQueryMinWidth: (
+  extra-small: 0px,
+  small: 600px,
+  medium: 900px,
+  large: 1200px,
+  extra-large: 1536px,
+);
+$mediaQueryMaxWidth: (
+  extra-small: 599px,
+  small: 899px,
+  medium: 1199px,
+  large: 1535px,
+  extra-large: 0px,
+);
+
+@mixin extra-small-media {
+  @media screen and (min-width: 0px) and (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin small-media {
+  @media screen and (min-width: 600px) and (max-width: 899px) {
+    @content;
+  }
+}
+
+@mixin medium-media {
+  @media screen and (min-width: 900px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin large-media {
+  @media screen and (min-width: 1200px) and (max-width: 1535px) {
+    @content;
+  }
+}
+
+@mixin extra-large-media {
+  @media screen and (min-width: 1536px) {
+    @content;
+  }
+}
+
+@mixin mix-media($args...) {
+  @each $media in $args {
+    @if $media != extra-large {
+      @media screen and (min-width: map-get($mediaQueryMinWidth, $media)) and (max-width: map-get($mediaQueryMaxWidth, $media)) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: map-get($mediaQueryMinWidth, $media)) {
+        @content;
+      }
+    }
+  }
+}

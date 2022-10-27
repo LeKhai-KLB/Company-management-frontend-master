@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -6,7 +7,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
+    "strictFunctionTypes": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -15,21 +17,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"],
-      "~Layout/*": ["./src/Layout/*"],
-      "~assets/*": ["./src/assets/*"],
-      "~constants/*": ["./src/constants/*"],
-      "~Components/*": ["./src/Components/*"],
-      "~Pages/*": ["./src/Pages/*"],
-      "~Routes/*": ["./src/Routes/*"],
-      "~Routes": ["./src/Routes"],
-      "~services/*": ["./src/services/*"],
-      "~stores/*": ["./src/stores/*"],
-      "~utils/*": ["./src/utils/*"],
-      "~Providers/*": ["./src/Providers/*"]
-    }
+    "removeComments": true,
+    "baseUrl": "."
   },
   "include": ["src"],
   "exclude": ["node_modules"]

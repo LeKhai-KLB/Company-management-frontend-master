@@ -6,10 +6,5 @@ type globalStylesProps = {
 };
 
 export const GlobalStyles = ({ children }: globalStylesProps) => {
-  return (
-    <div className="global-styles">
-      <i className="icon-pencil ic--small" />
-      {children}
-    </div>
-  );
+  return <>{children}</>;
 };

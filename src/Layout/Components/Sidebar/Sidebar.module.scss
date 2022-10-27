@@ -1,0 +1,19 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.sidebar {
+  background-color: transparent;
+}
+
+.sidebar--full-width {
+  font-size: 14px !important;
+  width: 100%;
+}
+
+.sidebar--auto-responsive {
+  width: 35%;
+  font-size: 12px !important;
+  @include mix-media("medium", "large", "extra-large") {
+    width: 18%;
+    font-size: 14px !important;
+  }
+}
