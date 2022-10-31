@@ -1,11 +1,13 @@
 import { FetchResult } from "@apollo/client";
 import { toast } from "react-toastify";
+import { TFakeFectApiPromise } from "./fakeFectAPI";
 
 export type TExecWithCatchCallback = Promise<
-  FetchResult<any, Record<string, any>, Record<string, any>> & {
-    data?: Record<string, any>;
-    error?: Record<string, any>;
-  }
+  | (FetchResult<any, Record<string, any>, Record<string, any>> & {
+      data?: Record<string, any>;
+      error?: Record<string, any>;
+    })
+  | TFakeFectApiPromise
 >;
 
 export async function execWithCatch(
@@ -18,11 +20,11 @@ export async function execWithCatch(
       toast.success(successMessage || "Successfully!");
       return result.data;
     } else {
-      toast.error(result.error?.message);
+      toast.error(result.error?.message || "error");
       return null;
     }
   } catch (err: any) {
-    toast.error(err?.message);
+    toast.error(err?.message || "error");
   }
   return null;
 }

@@ -8,10 +8,10 @@ import { Button } from "~/Components/Elements/Button";
 import styles from "./UserInfoForm.module.scss";
 import { TFormDataProps } from "~/utils/mixins.type";
 import { TextareaField, TextField } from "~/Components/Elements/Field";
-import { useState } from "react";
 import { useGlobalModal } from "~/Provider/GlobalModalProvider";
 import { GLOBAL_MODAL_TYPE } from "~constants/constants.app";
 import { UploadImage } from "~/Components/UploadImage";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   email: VALIDATOR_SCHEMA.EMAIL,
@@ -28,24 +28,32 @@ export const UserInfoForm = ({
   acceptEditMode = true,
   formData,
 }: TUserInfoFormProps) => {
-  const { active, handleChangeFormState, setValue, requiredProps } =
-    useCustomForm<TUserInfo>();
-  const [isReadOnly, setIsReadOnly] = useState(readOnly);
-  const [currentFormData, setCurrentFormData] = useState(formData);
+  const {
+    active,
+    handleChangeFormState,
+    isSubmitting,
+    requiredProps,
+    restore,
+    isReadOnly,
+    setIsReadOnly,
+    setCurrentFormData,
+  } = useCustomForm<TUserInfo>({
+    initialData: formData,
+    initialReadOnlyState: readOnly,
+  });
   const { showModal, hideModal } = useGlobalModal();
+  const [avatarFile, setAvatarFile] = useState<File | undefined>();
 
   const onSubmit = async (values: TUserInfo) => {
-    if (JSON.stringify(values) !== JSON.stringify(currentFormData)) {
-      setCurrentFormData(values);
-    }
+    console.log(values, avatarFile);
+    setCurrentFormData(values);
     setIsReadOnly(!isReadOnly);
   };
 
   const handleChangeMode = () => {
     if (!isReadOnly) {
-      Object.entries(currentFormData).forEach(([name, value]) => {
-        setValue(name, value);
-      });
+      restore();
+      setAvatarFile(undefined);
     }
     setIsReadOnly(!isReadOnly);
   };
@@ -107,6 +115,8 @@ export const UserInfoForm = ({
                 <UploadImage
                   src="https://a.storyblok.com/f/67418/1760x1166/d11e738a9a/screenshot-2022-06-17-at-17-50-16.png"
                   style={{ borderRadius: "50%" }}
+                  file={avatarFile}
+                  onChangeFile={(f: File) => setAvatarFile(f)}
                   readOnly={isReadOnly}
                 />
               </div>
@@ -163,6 +173,7 @@ export const UserInfoForm = ({
             <Button
               fullWidth
               type="submit"
+              loading={isSubmitting}
               sx={{ marginTop: "24px" }}
               disabled={!active}
               sizeKey={["extra-small", "small"]}

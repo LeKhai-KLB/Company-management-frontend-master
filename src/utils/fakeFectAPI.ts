@@ -1,15 +1,17 @@
+export type TFakeFectApiPromise = Promise<{
+  error: { message: "failed" } | null;
+  data: any;
+}>;
+
 export function fakeFectApiPromise(
   seconds: number = 3000,
   result: any = true,
   isFetchFailed: boolean = false,
-): Promise<{
-  error?: "failed" | undefined;
-  data?: any;
-}> {
+): TFakeFectApiPromise {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (isFetchFailed) reject({ error: "failed" });
-      else resolve({ data: result });
+      if (isFetchFailed) reject({ error: { message: "failed" }, data: null });
+      else resolve({ data: result, error: null });
     }, seconds);
   });
 }

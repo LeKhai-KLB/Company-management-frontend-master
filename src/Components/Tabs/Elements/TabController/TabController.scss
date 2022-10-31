@@ -1,0 +1,31 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.tab-controller {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box !important;
+}
+
+.tab-controller__header {
+  margin-bottom: 16px;
+  box-sizing: border-box !important;
+}
+
+.tab-controller__tab {
+  box-sizing: border-box !important;
+  color: var(--greyish);
+  font-weight: 600;
+  @include mix-media("extra-small") {
+    font-size: 12px;
+  }
+  @include mix-media("small", "extra-large", "medium", "large") {
+    font-size: 14px;
+  }
+  &.Mui-selected {
+    color: white;
+  }
+  &:hover {
+    color: white;
+  }
+}

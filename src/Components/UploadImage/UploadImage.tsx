@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Button } from "../Elements/Button";
 import { LazyImage } from "../LazyImage";
 import { TLazyImageProps } from "../LazyImage/LazyImage";
@@ -6,12 +6,14 @@ import "./UploadImage.scss";
 
 export type TUploadImageProps = TLazyImageProps & {
   readOnly?: boolean;
-  onChange?: (file: File) => void;
+  onChangeFile?: (file: File) => void;
+  file?: File;
 };
 
 export const UploadImage = ({
   readOnly,
-  onChange,
+  onChangeFile,
+  file,
   src,
   className,
   style,
@@ -19,7 +21,7 @@ export const UploadImage = ({
 }: TUploadImageProps) => {
   const [currentSrc, setCurrentSrc] = useState<string | undefined>(src);
   // eslint-disable-next-line
-  const [currentFile, setCurrentFile] = useState<File | undefined>();
+  const [currentFile, setCurrentFile] = useState<File | undefined>(file);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClickInput = () => {
@@ -29,21 +31,44 @@ export const UploadImage = ({
   const handleChangeInputFile = async (
     target: EventTarget & HTMLInputElement,
   ) => {
-    const file = target && target.files ? target.files[0] : null;
-    if (file) {
-      const previewImage = URL.createObjectURL(file);
+    const newFile = target && target.files ? target.files[0] : null;
+    if (newFile) {
+      const previewImage = URL.createObjectURL(newFile);
+      (await onChangeFile) && onChangeFile(newFile);
       setCurrentSrc(previewImage);
-      setCurrentFile(file);
-      onChange && (await onChange(file));
+      setCurrentFile(newFile);
     }
   };
 
-  const handeCancelUpload = () => {
+  const handeCancelUpload = async () => {
     currentSrc && URL.revokeObjectURL(currentSrc);
     if (inputRef && inputRef.current) inputRef.current.value = "";
+    (await onChangeFile) && onChangeFile(undefined);
     setCurrentFile(undefined);
     setCurrentSrc(src);
   };
+
+  useEffect(
+    () => {
+      if (src !== currentSrc) {
+        setCurrentSrc(src);
+        setCurrentFile(undefined);
+      }
+    },
+    // eslint-disable-next-line
+    [src],
+  );
+
+  useEffect(
+    () => {
+      if (!file) {
+        setCurrentSrc(src);
+        setCurrentFile(undefined);
+      }
+    },
+    // eslint-disable-next-line
+    [file],
+  );
 
   return (
     <div className={"upload-image " + className} style={style}>

@@ -39,15 +39,19 @@ export const BaseForm = <TFormValues, TSchema>({
     resolver: schema && yupResolver(schema as unknown as TYupSchema<TSchema>),
   });
 
-  const { dirtyFields, isValid, errors } = useFormState({
+  const formState = useFormState({
     control,
   });
+
+  const { errors, isValid, dirtyFields } = formState;
 
   useEffect(
     () => {
       const methods = handleChangeFormState();
-      if (useFormReturn)
+      if (useFormReturn) {
         methods.setFormReturnValue({ ...useFormReturn, control });
+        methods.setFormState(formState);
+      }
     },
     // eslint-disable-next-line
     [],
@@ -56,7 +60,7 @@ export const BaseForm = <TFormValues, TSchema>({
   useEffect(
     () => {
       const methods = handleChangeFormState();
-      methods.setFormState({ ...{ errors, isValid, dirtyFields } });
+      methods.setFormState(formState);
     },
     // eslint-disable-next-line
     [Object.keys(dirtyFields).length, errors, isValid],

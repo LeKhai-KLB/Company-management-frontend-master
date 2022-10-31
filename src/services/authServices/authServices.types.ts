@@ -17,3 +17,7 @@ export type TUserInfo = {
   introduction?: string;
   create_at: Date;
 };
+
+export type TUpdateUserInfo = Omit<TUserInfo, "id" | "create_at"> & {
+  avatar?: File;
+};

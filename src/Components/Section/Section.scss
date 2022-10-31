@@ -1,9 +1,14 @@
+@import "~styles/mixins/media_mixins.scss";
+
 .section {
   background-color: var(--arsenic);
   margin: 16px;
   padding: 16px;
   border-radius: 4px;
   color: white;
+  @include mix-media("extra-small", "small") {
+    max-width: calc(100vw - 64px);
+  }
 }
 
 .section__title {
