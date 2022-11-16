@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "~styles/mixins/media_mixins.scss";
 @import "../../assets/styles/variables/variables";
 
 :root {
@@ -18,7 +19,9 @@
   --gunmetal: #2c2d37;
   --arsenic: #3f4154;
   --blue-gray: #696c95;
+  --dark-blue-gray: #47495f;
   --moonstone-blue: #74c0ca;
+  --dark-moonstone-blue: #5f98a0;
   --black: #1a1a1a;
   --grey: #363739;
   --medium-grey: #262625;
@@ -40,7 +43,6 @@ body {
   font-style: normal !important;
   letter-spacing: normal !important;
   text-align: center !important;
-  color: var(--dark-grey) !important;
   text-rendering: optimizespeed !important;
   box-sizing: border-box !important;
   -webkit-box-sizing: border-box !important;
@@ -135,4 +137,24 @@ body {
 
 .visibility--hidden {
   visibility: hidden !important;
+}
+
+.input--app-style {
+  background-color: var(--blue-gray) !important;
+  border: 2px solid var(--blue-gray) !important;
+  &::placeholder {
+    color: #ccc !important;
+  }
+  &::-webkit-input-placeholder {
+    color: #ccc !important;
+  }
+  &::-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  @include mix-media("extra-small") {
+    width: 100% !important;
+  }
 }

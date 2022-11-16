@@ -1,31 +1,22 @@
-import { TabController } from "../Elements/TabController";
+import { TabController } from "../Elements/TabController/TabController";
 import { TabPanel } from "../Elements/TabPanel";
+import { MyGroupTab } from "./Tab/MyGroupTab";
+import { ManageGroupTab } from "./Tab/ManageGroupTab";
 
-const groupTabsList = [
-  {
-    label: "My current group",
-    value: 1,
-  },
-  {
-    label: "Manage Groups",
-    value: 2,
-  },
-  {
-    label: "New group",
-    value: 3,
-  },
+const tabList = [
+  { label: "My group", value: 0 },
+  { label: "Manage group", value: 1 },
 ];
 
 export const GroupTabs = () => {
   return (
-    <TabController
-      style={{ marginTop: "16px" }}
-      name={"group-tabs"}
-      tabList={groupTabsList}
-      currentValue={1}>
-      <TabPanel value={1}>My current group</TabPanel>
-      <TabPanel value={2}>Manage group</TabPanel>
-      <TabPanel value={3}>New group</TabPanel>
+    <TabController tabList={tabList} currentValue={1} name="groupTabs">
+      <TabPanel value={0}>
+        <MyGroupTab />
+      </TabPanel>
+      <TabPanel value={1}>
+        <ManageGroupTab />
+      </TabPanel>
     </TabController>
   );
 };

@@ -1,0 +1,34 @@
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.message-box {
+  flex: 1;
+  margin-bottom: 16px;
+  overflow: auto;
+}
+
+.send-box {
+  flex: 0;
+  display: flex;
+}
+
+._input {
+  background-color: var(--blue-gray) !important;
+  border: 2px solid var(--blue-gray) !important;
+  &::placeholder {
+    color: #ccc !important;
+  }
+  &::-webkit-input-placeholder {
+    color: #ccc !important;
+  }
+  &::-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc !important;
+  }
+}

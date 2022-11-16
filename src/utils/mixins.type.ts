@@ -14,4 +14,5 @@ export type TElementProps = {
 export type TFormDataProps<TFormData> = {
   readOnly?: boolean;
   formData?: TFormData;
+  acceptEditMode?: boolean;
 };

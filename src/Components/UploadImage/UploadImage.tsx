@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Button } from "../Elements/Button";
-import { LazyImage } from "../LazyImage";
-import { TLazyImageProps } from "../LazyImage/LazyImage";
+import { LazyImage, TLazyImageProps } from "../Elements/LazyImage";
 import "./UploadImage.scss";
 
 export type TUploadImageProps = TLazyImageProps & {

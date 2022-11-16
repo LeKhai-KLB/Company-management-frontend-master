@@ -1,0 +1,27 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.join-group-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include mix-media("extra-small") {
+    flex-direction: column;
+  }
+}
+
+.join-group-form__input {
+  flex: 1;
+  margin-right: 16px;
+  @include mix-media("extra-small") {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 16px;
+  }
+}
+
+.join-group-form__button {
+  @include mix-media("extra-small") {
+    width: 100%;
+  }
+}

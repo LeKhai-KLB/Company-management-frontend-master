@@ -27,6 +27,22 @@ const { SidebarModal } = lazyImport(
   () => import("~/Components/Modal"),
   "SidebarModal",
 );
+const { ChatModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "ChatModal",
+);
+const { JoinGroupModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "JoinGroupModal",
+);
+const { NewGroupModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "NewGroupModal",
+);
+const { ManageUsersModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "ManageUsersModal",
+);
 
 export type TModalStore = {
   modalType: GLOBAL_MODAL_TYPE;
@@ -66,7 +82,7 @@ const globalModalOverlayStyle = {
   justifyContent: "center",
   position: "absolute",
   backgroundColor: "black",
-  opacity: 0.2,
+  opacity: 0.3,
   zIndex: 1101,
 } as CSSProperties;
 
@@ -88,6 +104,18 @@ const renderModal = (store: TModalStore) => {
       }
       case GLOBAL_MODAL_TYPE.SIDEBAR_MODAL: {
         return <SidebarModal {...currentModalProps} />;
+      }
+      case GLOBAL_MODAL_TYPE.JOIN_GROUP_MODAL: {
+        return <JoinGroupModal />;
+      }
+      case GLOBAL_MODAL_TYPE.NEW_GROUP_MODAL: {
+        return <NewGroupModal />;
+      }
+      case GLOBAL_MODAL_TYPE.CHAT_MODAL: {
+        return <ChatModal />;
+      }
+      case GLOBAL_MODAL_TYPE.MANAGE_USERS_MODAL: {
+        return <ManageUsersModal />;
       }
     }
   }

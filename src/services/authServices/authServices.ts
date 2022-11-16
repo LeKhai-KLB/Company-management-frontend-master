@@ -81,18 +81,43 @@ export const useSkipSessionQuery = () => {
       skipSession
     }
   `;
-  return useLazyQuery<undefined, Boolean>(SKIP_SESSION_QUERY, {
+  return useLazyQuery<undefined, boolean>(SKIP_SESSION_QUERY, {
     queryName: "skipSession",
   });
 };
 
-export const useTestAuthGuardQuery = () => {
-  const GET_JWT_QUERY = gql`
-    query testAuthGuard {
-      testAuthGuard
+export const useUpdateUserInfoMutation = () => {
+  const UPDATE_USER_INFO_MUTATION = gql`
+    mutation updateUserInfo($updateUserInput: UpdateUserInput!) {
+      updateUserInfo(updateUserInput: $updateUserInput) {
+        username
+        email
+        avatar
+        create_at
+      }
     }
   `;
-  return useLazyQuery<undefined, string>(GET_JWT_QUERY, {
-    queryName: "testAuthGuard",
-  });
+  return useMutation<TUserInfo, boolean>(
+    UPDATE_USER_INFO_MUTATION,
+    {
+      mutationName: "updateUserInfo",
+      inputName: "updateUserInput",
+    },
+    { fetchPolicy: "no-cache" },
+  );
+};
+
+export const useDeleteUserMutation = () => {
+  const DELETE_USER_MUTAION = gql`
+    mutation deleteUser {
+      deleteUser
+    }
+  `;
+  return useMutation<undefined, boolean>(
+    DELETE_USER_MUTAION,
+    {
+      mutationName: "deleteUser",
+    },
+    { fetchPolicy: "no-cache" },
+  );
 };

@@ -3,14 +3,16 @@ import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { MainLayout } from "~/Layout/MainLayout";
 import { lazyImport } from "~utils/LazyImport";
 import { useSkipSessionQuery } from "~/services/authServices";
-import { useAuth } from "~/Provider/AuthProvider";
-import { Spinner } from "~/Components/Elements/Spinner";
+import { useAuthSelector } from "~/store/slices/authSlice";
 const { Cabinet } = lazyImport(() => import("~/Pages/Cabinet"), "Cabinet");
 const { Profile } = lazyImport(() => import("~Pages/Profile"), "Profile");
+const { Group } = lazyImport(() => import("~Pages/Group"), "Group");
+const { Room } = lazyImport(() => import("~Pages/Room"), "Room");
+const { Project } = lazyImport(() => import("~Pages/Project"), "Project");
 
 const ProtectedApp = () => {
-  const { user } = useAuth();
   const nav = useNavigate();
+  const { authenticated } = useAuthSelector();
 
   const [skipSession] = useSkipSessionQuery();
 
@@ -19,25 +21,16 @@ const ProtectedApp = () => {
   }, [skipSession]);
 
   useEffect(() => {
-    // if (!user) {
-    //   nav("../");
-    // }
     window.addEventListener("beforeunload", handleSkipSession);
     return () => {
       window.removeEventListener("beforeunload", handleSkipSession);
     };
-  }, [handleSkipSession, user, nav]);
+  }, [handleSkipSession, authenticated, nav]);
 
   return (
-    <>
-      {!user ? (
-        <MainLayout>
-          <Outlet />
-        </MainLayout>
-      ) : (
-        <Spinner size={40} color={"black"} />
-      )}
-    </>
+    <MainLayout>
+      <Outlet />
+    </MainLayout>
   );
 };
 
@@ -51,8 +44,20 @@ export const ProtectedRoutes = [
         element: <Profile />,
       },
       {
+        path: "group",
+        element: <Group />,
+      },
+      {
         path: "cabinet",
         element: <Cabinet />,
+      },
+      {
+        path: "room",
+        element: <Room />,
+      },
+      {
+        path: "project",
+        element: <Project />,
       },
       {
         path: "*",

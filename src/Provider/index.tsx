@@ -4,11 +4,12 @@ import { ApolloClientProvider } from "./ApolloClientProvider";
 import { TWrapperProps } from "~/utils/mixins.type";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-import { AuthProvider } from "./AuthProvider";
 import { MUIThemeProvider } from "./MUIThemeProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalModalProvider } from "./GlobalModalProvider";
+import { StoreProvider } from "./StoreProvider";
+
 function ErrorFallback() {
   return (
     <div>
@@ -31,15 +32,15 @@ export function AppProvider({ children }: TWrapperProps) {
       <Suspense fallback={<div>Loading...</div>}>
         <ErrorBoundary fallback={<ErrorFallback />} onError={errorHanler}>
           <CookiesProvider>
-            <ApolloClientProvider>
-              <AuthProvider>
-                <MUIThemeProvider>
-                  <Router>
+            <StoreProvider>
+              <MUIThemeProvider>
+                <Router>
+                  <ApolloClientProvider>
                     <GlobalModalProvider>{children}</GlobalModalProvider>
-                  </Router>
-                </MUIThemeProvider>
-              </AuthProvider>
-            </ApolloClientProvider>
+                  </ApolloClientProvider>
+                </Router>
+              </MUIThemeProvider>
+            </StoreProvider>
           </CookiesProvider>
         </ErrorBoundary>
       </Suspense>

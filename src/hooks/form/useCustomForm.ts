@@ -83,6 +83,15 @@ export function useCustomForm<TFormValues>(
 
   useEffect(
     () => {
+      if (options?.initialReadOnlyState !== currentReadOnlyState)
+        setCurrentReadOnlyState(options?.initialReadOnlyState);
+    },
+    // eslint-disable-next-line
+    [options?.initialReadOnlyState],
+  );
+
+  useEffect(
+    () => {
       if (formState && formReturnValue) {
         const { getValues, clearErrors } = formReturnValue;
         const { dirtyFields, errors, isValid } = formState;

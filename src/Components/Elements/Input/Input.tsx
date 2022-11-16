@@ -31,11 +31,16 @@ export const Input = ({
   style,
   ...props
 }: TInputProps) => {
-  const [currentSizeKey, setCurrentSize] = useGetSizeBelongsMediaQuery(sizeKey);
+  const [currentSizeKey, setCurrentSizeKey] =
+    useGetSizeBelongsMediaQuery(sizeKey);
 
-  useLayoutEffect(() => {
-    setCurrentSize(sizeKey);
-  }, [sizeKey, setCurrentSize]);
+  useLayoutEffect(
+    () => {
+      if (typeof sizeKey === "string") setCurrentSizeKey(sizeKey);
+    },
+    // eslint-disable-next-line
+    [sizeKey],
+  );
 
   const classNames = clsx(
     "input",

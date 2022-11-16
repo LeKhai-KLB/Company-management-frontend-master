@@ -1,11 +1,11 @@
 import { TWrapperProps } from "~/utils/mixins.type";
-import "./Section.scss";
+import "./BaseSection.scss";
 
 export type TSectionProps = TWrapperProps & {
   title?: string;
 };
 
-export const Section = ({
+export const BaseSection = ({
   title,
   children,
   className,

@@ -1,0 +1,46 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.manage-group-tab__tool-bar {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @include mix-media("extra-small", "small") {
+    flex-direction: column;
+  }
+}
+
+.manage-group-tab__tool-bar-left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}
+
+.manage-group-tab__join-group-button {
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+    border-radius: 50px;
+  }
+}
+
+.manage-group-tab__tool-bar-right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include mix-media("extra-small", "small") {
+    margin-top: 16px;
+    width: 100%;
+  }
+}
+
+.manage-group-tab__searchbar {
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}

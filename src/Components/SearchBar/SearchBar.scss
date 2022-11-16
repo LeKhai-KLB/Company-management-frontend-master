@@ -1,0 +1,17 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.search-bar {
+  box-sizing: border-box !important;
+  display: inline-flex;
+  background-color: var(--blue-gray);
+  align-items: center;
+  padding: 0px 12px;
+  border-radius: 50px;
+  @include mix-media("extra-small") {
+    width: 100% !important;
+  }
+}
+
+.search-bar__input {
+  width: 100%;
+}

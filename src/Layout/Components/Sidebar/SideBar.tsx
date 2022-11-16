@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { memo, useCallback, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { TElementProps } from "~/utils/mixins.type";
 import { NavLink } from "../NavLink";
 import styles from "./Sidebar.module.scss";
@@ -12,7 +13,7 @@ type TNavLinkList = {
 
 const navLinkList = [
   { to: "profile", icon: "icon-profile", name: "Profile" },
-  { to: "cabinet", icon: "icon-folder", name: "Cabinet" },
+  { to: "group", icon: "icon-group", name: "Group" },
   { to: "room", icon: "icon-live_tv", name: "Room" },
   { to: "project", icon: "icon-note-list", name: "Project" },
 ];
@@ -20,7 +21,6 @@ const navLinkList = [
 export type TSidebarProps = TElementProps & {
   onDirect?: (payload: any) => void;
   fullWidth?: boolean;
-  tab?: number;
   containedByModal?: boolean;
 };
 
@@ -31,7 +31,6 @@ export const Sidebar = memo(
     onDirect,
     fullWidth = false,
     containedByModal = false,
-    tab = 0,
   }: TSidebarProps) => {
     const [currentNavLinkList] = useState<Array<TNavLinkList>>(() =>
       navLinkList.map((navLink) => {
@@ -39,7 +38,12 @@ export const Sidebar = memo(
         return navLink;
       }),
     );
-    const [currentTab, setCurrentTab] = useState(tab);
+    const { pathname } = useLocation();
+    const [currentTab, setCurrentTab] = useState(() => {
+      const path = pathname.split("/")[2];
+      if (!path) return 0;
+      return navLinkList.findIndex((navLink) => navLink.to === path) || 0;
+    });
 
     const handleOnclick = useCallback(
       async (index: number) => {

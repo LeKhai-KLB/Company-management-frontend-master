@@ -1,0 +1,67 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.room {
+  margin: 16px;
+  padding: 16px;
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+}
+
+.room__main-screen-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  position: relative;
+  z-index: 0;
+}
+
+.room__main-screen {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.remote-button-container {
+  position: absolute;
+  z-index: 1;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 16px;
+}
+
+.remote-button-container__tool-button {
+  display: flex;
+  gap: 20px;
+}
+
+.room__member-screen-container {
+  background-color: var(--blue-gray);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 5px;
+  @include mix-media("extra-small", "small") {
+    gap: 20px;
+  }
+}
+
+.room__member-screen {
+  width: 80px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 4px solid var(--dark-purple);
+  background-color: var(--black);
+  &:hover {
+    cursor: pointer;
+  }
+  @include mix-media("extra-small", "small") {
+    width: 50px;
+  }
+}

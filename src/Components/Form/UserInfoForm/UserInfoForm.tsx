@@ -1,5 +1,9 @@
 import { BaseForm } from "../BaseForm";
-import { TUserInfo } from "~/services/authServices/authServices.types";
+import {
+  TUserInfo,
+  useDeleteUserMutation,
+  useUpdateUserInfoMutation,
+} from "~/services/authServices";
 import * as yup from "yup";
 import { VALIDATOR_SCHEMA } from "~utils/validator.schema";
 import { useCustomForm, requiredFormProps } from "~/hooks/form";
@@ -12,6 +16,12 @@ import { useGlobalModal } from "~/Provider/GlobalModalProvider";
 import { GLOBAL_MODAL_TYPE } from "~constants/constants.app";
 import { UploadImage } from "~/Components/UploadImage";
 import { useState } from "react";
+import { uploadFile } from "~/services/firebaseServices/firebaseServices";
+import { execWithCatch } from "~/utils/execWithCatch";
+import { useDispatch } from "react-redux";
+import { set_user } from "~/store/slices/authSlice";
+import { resetAllSlice } from "~/store/slices/resetAllSlice";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: VALIDATOR_SCHEMA.EMAIL,
@@ -19,15 +29,11 @@ const schema = yup.object().shape({
   introduction: VALIDATOR_SCHEMA.INTRODUCTION,
 });
 
-export type TUserInfoFormProps = TFormDataProps<TUserInfo> & {
-  acceptEditMode?: boolean;
-};
-
 export const UserInfoForm = ({
   readOnly = false,
   acceptEditMode = true,
   formData,
-}: TUserInfoFormProps) => {
+}: TFormDataProps<TUserInfo>) => {
   const {
     active,
     handleChangeFormState,
@@ -43,10 +49,22 @@ export const UserInfoForm = ({
   });
   const { showModal, hideModal } = useGlobalModal();
   const [avatarFile, setAvatarFile] = useState<File | undefined>();
+  const [updateUserInfo, { loading }] = useUpdateUserInfoMutation();
+  const nav = useNavigate();
+  const [deleteUser] = useDeleteUserMutation();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values: TUserInfo) => {
-    console.log(values, avatarFile);
-    setCurrentFormData(values);
+    let url;
+    if (avatarFile) {
+      url = await uploadFile(avatarFile);
+      values.avatar = url;
+    }
+    const data = await execWithCatch(() => updateUserInfo(values));
+    if (data) {
+      dispatch(set_user(data?.updateUserInfo));
+      setCurrentFormData(values);
+    }
     setIsReadOnly(!isReadOnly);
   };
 
@@ -65,8 +83,12 @@ export const UserInfoForm = ({
         variantKey: "confirm",
         children: "Confirm delete your account?",
         title: "WARNING!",
-        onConfirm: () => {
-          console.log("account deleted.");
+        onConfirm: async () => {
+          const result = await execWithCatch(() => deleteUser());
+          if (result?.deleteUser) {
+            resetAllSlice(dispatch);
+            setTimeout(() => nav("../../"), 300);
+          }
           hideModal();
         },
       },
@@ -113,7 +135,7 @@ export const UserInfoForm = ({
             <div className={styles["user-info-form__avatar-right-container"]}>
               <div className={styles["user-info-form__avatar"]}>
                 <UploadImage
-                  src="https://a.storyblok.com/f/67418/1760x1166/d11e738a9a/screenshot-2022-06-17-at-17-50-16.png"
+                  src={formData.avatar}
                   style={{ borderRadius: "50%" }}
                   file={avatarFile}
                   onChangeFile={(f: File) => setAvatarFile(f)}
@@ -122,16 +144,18 @@ export const UserInfoForm = ({
               </div>
             </div>
           </div>
-          {formData?.create_at && (
-            <TextField
-              label={"Join at"}
-              sizeKey={["extra-small", "small"]}
-              value={formData?.create_at.toDateString()}
-              style={{
-                marginBottom: "18px",
-              }}
-            />
-          )}
+          <TextField
+            label={"Join at"}
+            sizeKey={["extra-small", "small"]}
+            value={
+              formData?.create_at?.toDateString
+                ? formData?.create_at?.toDateString()
+                : "Unknown"
+            }
+            style={{
+              marginBottom: "18px",
+            }}
+          />
           <InputField
             fullWidth
             readOnly={isReadOnly}
@@ -173,7 +197,7 @@ export const UserInfoForm = ({
             <Button
               fullWidth
               type="submit"
-              loading={isSubmitting}
+              loading={isSubmitting || loading}
               sx={{ marginTop: "24px" }}
               disabled={!active}
               sizeKey={["extra-small", "small"]}

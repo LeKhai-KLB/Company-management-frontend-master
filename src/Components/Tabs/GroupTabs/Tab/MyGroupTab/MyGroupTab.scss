@@ -1,0 +1,47 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.my-group-tab {
+  margin-top: 16px;
+  font-size: 14px;
+  @include mix-media("extra-small", "small") {
+    font-size: "12px";
+  }
+}
+
+.my-group-tab__toolbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid white;
+}
+
+.my-group-tab__left-toolbar {
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+}
+
+.my-group-tab__left-toolbar__button {
+  margin-left: 8px;
+  @include mix-media("extra-small") {
+    padding: 8px 8px !important;
+    width: 48px !important;
+    min-width: unset !important;
+  }
+}
+
+.my-group-tab__left-toolbar__button:first-child {
+  margin-left: 0px;
+}
+
+.my-group-tab__right-toolbar {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-group-tab__form {
+  margin-top: 16px;
+}

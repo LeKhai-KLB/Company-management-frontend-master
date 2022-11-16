@@ -10,7 +10,6 @@ export type TTabPanelProps = TWrapperProps & {
 
 export const TabPanel = ({ value, children, ...props }: TTabPanelProps) => {
   const { tabValue, tabName } = useTabController();
-  console.log("check ", value);
   if (value !== tabValue) return null;
   return (
     <div className={"tab-panel"} id={`${tabName}-tabpanel-${value}`} {...props}>

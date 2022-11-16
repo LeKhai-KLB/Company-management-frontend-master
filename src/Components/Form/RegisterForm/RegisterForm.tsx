@@ -1,5 +1,5 @@
 import { BaseForm } from "../BaseForm";
-import { TRegisterMutationInput } from "~/services/authServices/authServices.types";
+import { TRegisterMutationInput } from "~/services/authServices";
 import * as yup from "yup";
 import { VALIDATOR_SCHEMA } from "~utils/validator.schema";
 import { useCustomForm, requiredFormProps } from "~/hooks/form";
@@ -29,6 +29,9 @@ export const RegisterForm = () => {
   const onSubmit = async (values: TRegisterForm) => {
     const { confirm_password, ...registerInput } = values;
     await execWithCatch(() => register(registerInput));
+    showModal({
+      modalType: GLOBAL_MODAL_TYPE.LOGIN_MODAL,
+    });
   };
 
   const showLoginModal = () => {

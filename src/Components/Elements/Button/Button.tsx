@@ -119,9 +119,9 @@ export const Button = forwardRef<
         : variants[variantKey].className,
       sizeClasses[currentSizeKey!],
       disabled && "button--disabled",
-      className && className,
       isBoldTextStyle && "button--typography-bold",
       rounded && "button--rounded",
+      className && className,
     );
 
     return (

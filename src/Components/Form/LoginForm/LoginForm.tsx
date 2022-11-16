@@ -1,5 +1,5 @@
 import { BaseForm } from "../BaseForm";
-import { TLoginQueryInput } from "~/services/authServices/authServices.types";
+import { TLoginQueryInput } from "~/services/authServices";
 import * as yup from "yup";
 import { VALIDATOR_SCHEMA } from "~utils/validator.schema";
 import { useCustomForm, requiredFormProps } from "~/hooks/form";
@@ -7,12 +7,13 @@ import { InputField } from "~/Components/Elements/Field/InputField";
 import { Button } from "~/Components/Elements/Button";
 import { TFormDataProps } from "~utils/mixins.type";
 import { useLoginQuery } from "~/services/authServices";
-import { useAuth } from "~Provider/AuthProvider";
 import { execWithCatch } from "~/utils/execWithCatch";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.scss";
 import { useGlobalModal } from "~/Provider/GlobalModalProvider";
 import { GLOBAL_MODAL_TYPE } from "~/constants/constants.app";
+import { set_user } from "~store/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object().shape({
   email: VALIDATOR_SCHEMA.EMAIL,
@@ -26,15 +27,19 @@ export const LoginForm = ({
   const { active, handleChangeFormState, requiredProps } =
     useCustomForm<TLoginQueryInput>();
   const [login, { loading }] = useLoginQuery();
-  const { handleSetUser } = useAuth();
-  const { showModal } = useGlobalModal();
+  const { showModal, hideModal } = useGlobalModal();
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values: TLoginQueryInput) => {
     const data = await execWithCatch(() => login(values));
     if (data) {
-      handleSetUser(data);
-      nav("./app");
+      dispatch(set_user(data?.login));
+
+      setTimeout(() => {
+        hideModal();
+        nav("./app");
+      }, 300);
     }
   };
 

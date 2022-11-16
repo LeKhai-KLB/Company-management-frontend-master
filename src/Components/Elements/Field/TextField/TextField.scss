@@ -1,0 +1,19 @@
+.text-field__content_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: inherit;
+}
+
+.text-field__tooltip-title {
+  color: white;
+  font-size: 10px;
+}
+
+.text-field__copy-button {
+  margin-left: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  pointer-events: auto;
+}

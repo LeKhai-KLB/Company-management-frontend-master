@@ -10,7 +10,7 @@
           "~Pages": "./src/Pages",
           "~services": "./src/services",
           "~utils": "./src/utils",
-          "~stores": "./src/stores",
+          "~store": "./src/store",
           "~assets": "./src/assets",
           "~Provider": "./src/Provider",
           "~Routes": "./src/Routes",

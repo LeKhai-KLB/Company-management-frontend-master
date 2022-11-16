@@ -1,0 +1,69 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.cabinet-section__toolbar {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  color: var(--greyish);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid white;
+  padding-bottom: 8px;
+}
+
+.cabinet-section__navigator {
+  font-size: 14px;
+  @include mix-media("extra-small", "small") {
+    font-size: 12px;
+  }
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.cabinet-section__link {
+  margin-left: 12px;
+  &:hover {
+    color: white !important;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.cabinet-section__link:first-child {
+  margin-left: 0px;
+}
+
+.cabinet-section__divider {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 8px;
+}
+
+.cabinet-section__divider:last-child {
+  display: none;
+}
+
+.cabinet-section__folder-working-place {
+  display: flex;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.directory {
+  padding: 8px 16px;
+  height: 75px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.directory-name {
+  font-size: 12px;
+}

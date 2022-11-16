@@ -1,0 +1,25 @@
+.avatar {
+  box-sizing: border-box !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.avatar--small {
+  width: 20px;
+}
+
+.avatar--medium {
+  width: 35px;
+  border: 2px solid white;
+}
+
+.avatar--large {
+  width: 45px;
+}

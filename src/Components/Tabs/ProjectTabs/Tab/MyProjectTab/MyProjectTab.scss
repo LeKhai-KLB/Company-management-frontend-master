@@ -1,0 +1,103 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.my-group-tab {
+  margin-top: 16px;
+  font-size: 14px;
+  @include mix-media("extra-small", "small") {
+    font-size: "12px";
+  }
+}
+
+.my-group-tab__toolbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid white;
+}
+
+.my-group-tab__left-toolbar {
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+}
+
+.my-group-tab__right-toolbar {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-group-tab__form {
+  margin-top: 16px;
+}
+
+.my-group-tab__working-place {
+  margin-top: 16px;
+  border-top: 1px solid white;
+}
+
+.my-group-tab__working-place-toolbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-bottom: 24px;
+}
+
+.my-group-tab__working-place-toolbar__left {
+  display: flex;
+  align-items: center;
+}
+.my-group-tab__working-place-toolbar__right {
+}
+
+.my-project-tab__datetime-picker {
+  cursor: pointer;
+
+  background-color: var(--blue-gray) !important;
+  border: 2px solid var(--blue-gray) !important;
+  &::placeholder {
+    color: #ccc !important;
+  }
+  &::-webkit-input-placeholder {
+    color: #ccc !important;
+  }
+  &::-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  @include mix-media("extra-small") {
+    width: 100% !important;
+  }
+}
+
+.my-group-tab__board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.my-project-tab__panel {
+  width: 28%;
+  height: 180px;
+  padding: 8px;
+  overflow: auto;
+  background-color: var(--blue-gray);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-project-tab__card {
+  text-align: left;
+  margin-top: 12px;
+  background-color: var(--dark-blue-gray);
+  padding: 8px;
+  color: white;
+  height: 100%;
+}

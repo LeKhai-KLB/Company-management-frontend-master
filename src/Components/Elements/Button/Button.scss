@@ -44,10 +44,14 @@
 
 .button--basic {
   text-transform: capitalize !important;
-  color: white;
   padding: 8px 16px !important;
   background-color: var(--blue-gray) !important;
   @extend .button--hover;
+  &.MuiButton-root {
+    color: unset;
+    font-weight: unset;
+  }
+  color: white;
 }
 
 .button--text {
