@@ -1,0 +1,39 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.pending-users-actions-button {
+  display: inline-block;
+}
+
+.pending-users-actions-button__popper {
+  color: "white" !important;
+}
+
+.pending-users-actions-button__icon {
+  font-size: 14px !important;
+  @include mix-media("extra-small", "small") {
+    font-size: 12px !important;
+  }
+}
+
+.pending-users-actions-button__child-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  background-color: var(--arsenic);
+  border-radius: 5px;
+  width: 140px;
+}
+
+.pending-users-actions-button__child-button .button__content-container {
+  display: flex !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+  background-color: var(--arsenic) !important;
+}
+
+.pending-users-actions-button__divider {
+  width: calc(100%);
+  height: 1px;
+  background-color: var(--blue-gray);
+}

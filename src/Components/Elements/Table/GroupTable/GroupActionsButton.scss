@@ -1,3 +1,5 @@
+@import "~styles/mixins/media_mixins.scss";
+
 .group-actions-button {
   display: inline-block;
 }
@@ -6,8 +8,11 @@
   color: "white" !important;
 }
 
-.group-actions__icon {
+.group-actions-button__icon {
   font-size: 14px !important;
+  @include mix-media("extra-small", "small") {
+    font-size: 12px !important;
+  }
 }
 
 .group-actions-button__child-button-container {

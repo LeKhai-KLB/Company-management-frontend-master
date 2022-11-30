@@ -12,15 +12,18 @@ export type TExecWithCatchCallback = Promise<
 
 export async function execWithCatch(
   callback: () => TExecWithCatchCallback,
-  successMessage?: string,
+  options?: {
+    successMessage?: string;
+    errorMessage?: string;
+  },
 ) {
   try {
     const result = await callback();
-    if (result.data) {
-      toast.success(successMessage || "Successfully!");
+    if (result.data && Object.values(result.data || {})[0]) {
+      toast.success(options?.successMessage || "Successfully!");
       return result.data;
     } else {
-      toast.error(result.error?.message || "error");
+      toast.error(result.error?.message || options?.errorMessage || "error");
       return null;
     }
   } catch (err: any) {

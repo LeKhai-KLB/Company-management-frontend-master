@@ -1,0 +1,5 @@
+.pending-users-table {
+  &.base-table tbody tr:nth-of-type(even) {
+    background-color: var(--deep-dark-blue);
+  }
+}

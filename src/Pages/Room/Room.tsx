@@ -50,7 +50,18 @@ export const Room = memo(() => {
         </div>
       </div>
       <div className="room__member-screen-container">
-        <LazyImage className="room__member-screen" src={img} />
+        <video
+          autoPlay
+          playsInline
+          muted={true}
+          className="room__member-screen"
+        />
+        <video
+          autoPlay
+          playsInline
+          muted={true}
+          className="room__member-screen"
+        />
       </div>
       <div className="room__toolbar"></div>
     </div>

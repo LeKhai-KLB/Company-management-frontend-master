@@ -1,3 +1,4 @@
+import { ManageUsersTabs } from "~/Components/Tabs/ManageUsersTabs";
 import { BaseModal } from "../BaseModal";
 
 export const ManageUsersModal = () => {
@@ -6,7 +7,7 @@ export const ManageUsersModal = () => {
       title="MANAGE USERS"
       showConfirmButton={false}
       showCancelButton={false}>
-      MANAGE USERS
+      <ManageUsersTabs />
     </BaseModal>
   );
 };

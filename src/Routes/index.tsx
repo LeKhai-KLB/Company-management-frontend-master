@@ -4,18 +4,19 @@ import { useRoutes, useNavigate } from "react-router-dom";
 import { PublicRoutes } from "./PublicRoutes";
 import { useCheckCurrentSessionQuery } from "~/services/authServices";
 import { Spinner } from "~/Components/Elements/Spinner";
-import { set_user } from "~/store/slices/authSlice";
+import { set_user, useAuthSelector } from "~/store/slices/authSlice";
 import { useDispatch } from "react-redux";
 
 export const AppRoutes = () => {
   const { loading, data } = useCheckCurrentSessionQuery();
+  const { authenticated } = useAuthSelector();
   const nav = useNavigate();
   const element = useRoutes([...ProtectedRoutes, ...PublicRoutes]);
   const dispatch = useDispatch();
 
   useEffect(
     () => {
-      if (data) {
+      if (data && !authenticated) {
         dispatch(set_user(data));
         nav("./app");
       }

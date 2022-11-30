@@ -34,7 +34,6 @@
   justify-content: flex-end;
   align-items: center;
   @include mix-media("extra-small", "small") {
-    margin-top: 16px;
     width: 100%;
   }
 }

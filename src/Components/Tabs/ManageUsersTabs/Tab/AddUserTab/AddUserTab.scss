@@ -1,0 +1,27 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.add-user-tab {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include mix-media("extra-small") {
+    flex-direction: column;
+  }
+}
+
+.add-user-tab__input {
+  flex: 1;
+  margin-right: 16px;
+  @include mix-media("extra-small") {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 16px;
+  }
+}
+
+.add-user-tab__button {
+  @include mix-media("extra-small") {
+    width: 100%;
+  }
+}

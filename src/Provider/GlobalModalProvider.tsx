@@ -39,9 +39,21 @@ const { NewGroupModal } = lazyImport(
   () => import("~/Components/Modal"),
   "NewGroupModal",
 );
+const { NewProjectModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "NewProjectModal",
+);
+const { NewSprintModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "NewSprintModal",
+);
 const { ManageUsersModal } = lazyImport(
   () => import("~/Components/Modal"),
   "ManageUsersModal",
+);
+const { NewTaskModal } = lazyImport(
+  () => import("~/Components/Modal"),
+  "NewTaskModal",
 );
 
 export type TModalStore = {
@@ -111,11 +123,20 @@ const renderModal = (store: TModalStore) => {
       case GLOBAL_MODAL_TYPE.NEW_GROUP_MODAL: {
         return <NewGroupModal />;
       }
+      case GLOBAL_MODAL_TYPE.NEW_PROJECT_MODAL: {
+        return <NewProjectModal />;
+      }
+      case GLOBAL_MODAL_TYPE.NEW_SPRINT_MODAL: {
+        return <NewSprintModal />;
+      }
       case GLOBAL_MODAL_TYPE.CHAT_MODAL: {
         return <ChatModal />;
       }
       case GLOBAL_MODAL_TYPE.MANAGE_USERS_MODAL: {
         return <ManageUsersModal />;
+      }
+      case GLOBAL_MODAL_TYPE.NEW_TASK_MODAL: {
+        return <NewTaskModal />;
       }
     }
   }

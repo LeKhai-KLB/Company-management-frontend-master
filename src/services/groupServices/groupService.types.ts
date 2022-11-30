@@ -5,6 +5,7 @@ export type TGroupInfo = {
   group_name: string;
   summary?: string;
   create_at: Date;
+  role: GROUP_ROLE;
 };
 
 export type TNewGroup = {
@@ -12,10 +13,24 @@ export type TNewGroup = {
   summary?: string;
 };
 
+export type TUpdateGroupInfo = {} & TNewGroup;
+
 export type TManageGroup = {
   id: string;
   group_name: string;
   summary?: string;
   role?: GROUP_ROLE;
-  isDefaultGroup?: boolean;
+  isDefault?: boolean;
+};
+
+export type TManageUsers = {
+  id: number;
+  username: string;
+  email: string;
+  role: GROUP_ROLE;
+};
+
+export type TSetRole = {
+  user_id: number;
+  role: GROUP_ROLE;
 };

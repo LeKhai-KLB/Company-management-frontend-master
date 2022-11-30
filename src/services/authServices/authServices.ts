@@ -27,6 +27,7 @@ export const useLoginQuery = () => {
   const LOGIN_QUERY = gql`
     query login($loginInput: LoginInput!) {
       login(loginInput: $loginInput) {
+        id
         username
         email
         avatar
@@ -48,6 +49,7 @@ export const useCheckCurrentSessionQuery = () => {
   const CHECK_CURRENT_SESSION_QUERY = gql`
     query checkCurrentSession {
       checkCurrentSession {
+        id
         username
         email
         avatar

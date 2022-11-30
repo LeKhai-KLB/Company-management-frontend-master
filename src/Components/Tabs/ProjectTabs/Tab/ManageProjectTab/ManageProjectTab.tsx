@@ -1,19 +1,19 @@
 import { SearchBar } from "~/Components/SearchBar";
 import "./ManageProjectTab.scss";
 import { ProjectTable } from "../../../../Elements/Table/ProjectTable/ProjectTable";
-import { TManageProject } from "~/services/projectServices";
+// import { TManageProject } from "~/services/projectServices";
 
-const projectData: Array<TManageProject> = [
-  {
-    id: "1234abc",
-    project_name: "New project 1",
-  },
-  {
-    id: "1234abc12345ddfg",
-    project_name: "New project 2",
-    isDefaultProject: true,
-  },
-];
+// const projectData: Array<TManageProject> = [
+//   {
+//     id: "1234abc",
+//     project_name: "New project 1",
+//   },
+//   {
+//     id: "1234abc12345ddfg",
+//     project_name: "New project 2",
+//     isDefaultProject: true,
+//   },
+// ];
 
 export const ManageProjectTab = () => {
   const handleChange = (value: string) => {
@@ -25,7 +25,7 @@ export const ManageProjectTab = () => {
       <div className={"manage-group-tab__tool-bar"}>
         <SearchBar placeholder="Project name, id..." onChange={handleChange} />
       </div>
-      <ProjectTable projectData={projectData} />
+      {/* <ProjectTable projectData={projectData} /> */}
     </div>
   );
 };

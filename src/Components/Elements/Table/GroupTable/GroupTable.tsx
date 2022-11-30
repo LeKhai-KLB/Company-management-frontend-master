@@ -3,15 +3,22 @@ import { TManageGroup } from "~/services/groupServices";
 import { GroupActionButton } from "./GroupActionsButton";
 
 export type TGroupTableProps = {
-  groupData: Array<TManageGroup>;
+  groupData?: Array<TManageGroup> | undefined | null;
+  loading?: boolean;
+  refetch?: () => void;
 };
 
-export const GroupTable = ({ groupData }: TGroupTableProps) => {
+export const GroupTable = ({
+  groupData,
+  loading,
+  refetch,
+}: TGroupTableProps) => {
   return (
     <div>
       <BaseTable<TManageGroup>
         data={groupData}
-        activeField="isDefaultGroup"
+        activeField="isDefault"
+        loading={loading}
         columns={[
           {
             title: "Group name",
@@ -23,7 +30,7 @@ export const GroupTable = ({ groupData }: TGroupTableProps) => {
           },
           {
             title: "Default",
-            conditionField: "isDefaultGroup",
+            conditionField: "isDefault",
             conditionValue: "*",
             style: { textAlign: "center" },
           },
@@ -31,8 +38,14 @@ export const GroupTable = ({ groupData }: TGroupTableProps) => {
             title: "",
             field: "id",
             style: { textAlign: "right" },
-            Cell: ({ entry: { id } }) => {
-              return <GroupActionButton id={id} />;
+            Cell: ({ entry: { id, isDefault } }) => {
+              return (
+                <GroupActionButton
+                  id={id}
+                  refetch={refetch}
+                  isDefault={isDefault}
+                />
+              );
             },
           },
         ]}

@@ -1,0 +1,41 @@
+.select {
+  box-sizing: border-box !important;
+  padding: 6px 16px;
+  outline: none;
+  border-radius: 4px;
+  font-weight: 500;
+  line-height: unset !important;
+  border: 2px solid var(--normal-grey);
+  color: white;
+  background-color: var(--normal-grey);
+}
+
+.select > option {
+  padding: 6px 16px;
+}
+
+.select--focus {
+  &:focus {
+    outline: none;
+    border: 2px solid white !important;
+  }
+}
+
+.select--read-only {
+  font-weight: 600;
+  color: var(--light-grey);
+  border: 2px solid var(--blue-gray);
+  &:focus {
+    outline: none;
+    border: 2px solid var(--blue-gray) !important;
+  }
+}
+
+.select--full-width {
+  width: 100%;
+}
+
+.select--invalid {
+  background-color: var(--pink-rgba) !important;
+  border: 2px solid var(--pink) !important;
+}

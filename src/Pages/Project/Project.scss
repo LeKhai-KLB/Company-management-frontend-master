@@ -1,7 +1,57 @@
-.project {
+@import "~styles/mixins/media_mixins.scss";
+
+.project-container {
   width: 100%;
   height: 100%;
   box-sizing: border-box !important;
   display: flex;
   flex-direction: column;
+}
+
+.project {
+  padding-top: 8px;
+}
+
+.project__tool-bar {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @include mix-media("extra-small", "small") {
+    flex-direction: column;
+  }
+}
+
+.project__tool-bar-left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}
+
+.project__button {
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+    border-radius: 50px;
+  }
+}
+
+.project__tool-bar-right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}
+
+.project__searchbar {
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
 }

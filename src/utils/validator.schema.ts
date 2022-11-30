@@ -9,7 +9,12 @@ export enum VALIDATOR_ERROR_MESSAGE {
   INTRODUCTION = "Introduction must contains maximum 500 characters",
   GROUPNAME = "Length of group name must be 2 to 50",
   SUMMARY = "Summary must contain maximum 500 characters",
-  PROJECTNAME = "Length",
+  PROJECTNAME = "Length of project name must be 2 to 50",
+  SPRINTNAME = "Length of sprint name must be 2 to 50",
+  DATETIME = "",
+  TASKNAME = "Length of task name must be 2 to 50",
+  CONTENT = "Content must contain maximum 500 characters",
+  POINT = "Point must be a number",
 }
 
 export const passwordRegex =
@@ -43,6 +48,19 @@ export const VALIDATOR_SCHEMA = {
   PROJECTNAME: yup
     .string()
     .required()
-    .min(2, VALIDATOR_ERROR_MESSAGE.GROUPNAME)
-    .max(30, VALIDATOR_ERROR_MESSAGE.GROUPNAME),
+    .min(2, VALIDATOR_ERROR_MESSAGE.PROJECTNAME)
+    .max(50, VALIDATOR_ERROR_MESSAGE.PROJECTNAME),
+  SPRINTNAME: yup
+    .string()
+    .required()
+    .min(2, VALIDATOR_ERROR_MESSAGE.SPRINTNAME)
+    .max(50, VALIDATOR_ERROR_MESSAGE.SPRINTNAME),
+  DATETIME: yup.date(),
+  TASKNAME: yup
+    .string()
+    .required()
+    .min(2, VALIDATOR_ERROR_MESSAGE.SPRINTNAME)
+    .max(50, VALIDATOR_ERROR_MESSAGE.SPRINTNAME),
+  CONTENT: yup.string().max(500, VALIDATOR_ERROR_MESSAGE.CONTENT),
+  POINT: yup.number().required(VALIDATOR_ERROR_MESSAGE.POINT),
 };

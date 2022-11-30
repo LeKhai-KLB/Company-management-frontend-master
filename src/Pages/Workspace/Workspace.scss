@@ -1,0 +1,74 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.workspace-container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.workspace {
+  padding-top: 8px;
+}
+
+.workspace__top-container {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.workspace__bottom-container {
+  padding-top: 32px;
+  margin-top: 16px;
+  border-top: 1px solid var(--greyish);
+}
+
+.workspace__tool-bar {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @include mix-media("extra-small", "small") {
+    flex-direction: column;
+  }
+}
+
+.workspace__tool-bar-left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}
+
+.workspace__button {
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+    border-radius: 50px;
+  }
+}
+
+.workspace__select-field {
+  width: 100%;
+}
+
+.workspace__tool-bar-right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}
+
+.workspace__searchbar {
+  @include mix-media("extra-small", "small") {
+    width: 100%;
+  }
+}

@@ -9,6 +9,7 @@ const { Profile } = lazyImport(() => import("~Pages/Profile"), "Profile");
 const { Group } = lazyImport(() => import("~Pages/Group"), "Group");
 const { Room } = lazyImport(() => import("~Pages/Room"), "Room");
 const { Project } = lazyImport(() => import("~Pages/Project"), "Project");
+const { Workspace } = lazyImport(() => import("~Pages/Workspace"), "Workspace");
 
 const ProtectedApp = () => {
   const nav = useNavigate();
@@ -58,6 +59,10 @@ export const ProtectedRoutes = [
       {
         path: "project",
         element: <Project />,
+      },
+      {
+        path: "workspace",
+        element: <Workspace />,
       },
       {
         path: "*",

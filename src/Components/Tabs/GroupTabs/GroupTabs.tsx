@@ -10,7 +10,7 @@ const tabList = [
 
 export const GroupTabs = () => {
   return (
-    <TabController tabList={tabList} currentValue={1} name="groupTabs">
+    <TabController tabList={tabList} currentValue={0} name="groupTabs">
       <TabPanel value={0}>
         <MyGroupTab />
       </TabPanel>

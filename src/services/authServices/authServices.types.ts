@@ -10,7 +10,7 @@ export type TLoginQueryInput = {
 };
 
 export type TUserInfo = {
-  id?: number;
+  id: number;
   username: string;
   email: string;
   avatar?: string;

@@ -4,10 +4,10 @@ import { TProjectInfo } from "~/services/projectServices";
 import { ProjectInfoForm } from "~/Components/Form/ProjectInfoForm";
 import { Input } from "~/Components/Elements/Input";
 
-const projectTable: TProjectInfo = {
-  id: "asfwes243254UUUO324",
-  project_name: "New Project",
-};
+// const projectTable: TProjectInfo = {
+//   id: "asfwes243254UUUO324",
+//   project_name: "New Project",
+// };
 
 export const MyProjectTab = () => {
   return (
@@ -33,7 +33,7 @@ export const MyProjectTab = () => {
         </div>
       </div>
       <div className="my-group-tab__form">
-        <ProjectInfoForm formData={projectTable} readOnly />
+        {/* <ProjectInfoForm formData={projectTable} readOnly /> */}
       </div>
       <div className="my-group-tab__working-place">
         <div className="my-group-tab__working-place-toolbar">

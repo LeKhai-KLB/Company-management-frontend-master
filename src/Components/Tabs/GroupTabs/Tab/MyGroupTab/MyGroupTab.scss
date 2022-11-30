@@ -4,7 +4,7 @@
   margin-top: 16px;
   font-size: 14px;
   @include mix-media("extra-small", "small") {
-    font-size: "12px";
+    font-size: 12px;
   }
 }
 
@@ -44,4 +44,21 @@
 
 .my-group-tab__form {
   margin-top: 16px;
+  color: rgba($color: white, $alpha: 0.5);
+  @include mix-media("extra-small") {
+    font-size: 12px;
+  }
+}
+
+.my-group-tab__form-link {
+  color: white;
+  margin: 0px 4px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.my-group-tab__notify {
+  padding: 24px 0px;
 }

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { CSSProperties, useEffect, useState } from "react";
 import { TWrapperProps } from "~/utils/mixins.type";
+import { Spinner } from "../../Spinner";
 import "./BaseTable.scss";
 
 type TTableColumn<Entry> = {
@@ -13,35 +14,36 @@ type TTableColumn<Entry> = {
 };
 
 export type TBaseTableProps<Entry> = TWrapperProps & {
-  data: Array<Entry>;
-  activeField?: string | [string, any];
+  data?: Array<Entry> | null | undefined;
+  activeField?: string;
+  activeValue?: any;
   columns: Array<TTableColumn<Entry>>;
+  loading?: boolean;
 };
 
 function setNewTableData<Entry>(
-  data: Entry[],
-  activeField?: string | [string, any],
+  data?: Entry[],
+  activeField?: string,
+  activeValue?: any,
 ) {
-  if (!data.length) {
+  if (!data || !data.length) {
     return [];
   }
   if (!activeField) {
     return data;
   }
-  const newSortData = data.sort((a: Entry, b: Entry) => {
-    if (typeof activeField === "string") {
+  const handleData = JSON.parse(JSON.stringify(data));
+  const newSortData = handleData.sort((a: Entry, b: Entry) => {
+    if (!activeValue) {
       if (a[activeField] && !b[activeField]) return -1;
       else if (!a[activeField] && b[activeField]) return 1;
       else return 0;
     } else {
-      if (
-        a[activeField[0]] === activeField[1] &&
-        b[activeField[0]] !== activeField[1]
-      ) {
+      if (a[activeField] === activeValue && b[activeField] !== activeValue) {
         return -1;
       } else if (
-        a[activeField[0]] !== activeField[1] &&
-        b[activeField[0]] === activeField[1]
+        a[activeField] !== activeValue &&
+        b[activeField] === activeValue
       ) {
         return 1;
       } else {
@@ -49,22 +51,19 @@ function setNewTableData<Entry>(
       }
     }
   });
-  // const activeEntry = data[activeEntryIndex];
-  // return [
-  //   activeEntry,
-  //   ...data.filter((_, index) => index !== activeEntryIndex),
-  // ];
   return newSortData;
 }
 
 function checkActiveField<Entry>(
   entry: Entry,
-  activeField: string | [string, any],
+  activeField?: string,
+  activeValue?: string,
 ) {
-  if (typeof activeField === "string") {
+  if (!activeField) return false;
+  if (!activeValue) {
     return entry?.[activeField];
   } else {
-    return entry?.[activeField[0]] === activeField[1];
+    return entry?.[activeField] === activeValue;
   }
 }
 
@@ -72,16 +71,18 @@ export const BaseTable = <Entry,>({
   data,
   columns,
   activeField,
+  activeValue,
   className,
   style,
+  loading,
 }: TBaseTableProps<Entry>) => {
   const [currentData, setCurrentData] = useState(
-    setNewTableData(data, activeField),
+    setNewTableData(data, activeField, activeValue),
   );
 
   useEffect(() => {
-    setCurrentData(setNewTableData(data, activeField));
-  }, [data, activeField]);
+    setCurrentData(setNewTableData(data, activeField, activeValue));
+  }, [data, activeField, activeValue]);
 
   return (
     <div className={"base-table-container"}>
@@ -101,7 +102,7 @@ export const BaseTable = <Entry,>({
               <tr
                 key={entryIndex}
                 className={clsx(
-                  checkActiveField<Entry>(entry, activeField) &&
+                  checkActiveField<Entry>(entry, activeField, activeValue) &&
                     "base-table__tr--active",
                 )}>
                 {columns.map(
@@ -131,6 +132,11 @@ export const BaseTable = <Entry,>({
       </table>
       {(!currentData || !currentData?.length) && (
         <div className={"base-table__empty-box"}>Empty</div>
+      )}
+      {loading && (
+        <div className={"base-table__loading-box"}>
+          <Spinner size={20} color="white" />
+        </div>
       )}
     </div>
   );

@@ -1,9 +1,11 @@
 import clsx from "clsx";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useGroupSelector } from "~/store/slices/groupSlice/group.selector";
 import { TElementProps } from "~/utils/mixins.type";
 import { NavLink } from "../NavLink";
 import styles from "./Sidebar.module.scss";
+import { useProjectSelector } from "../../../store/slices/projectSlice/project.selector";
 
 type TNavLinkList = {
   to: string;
@@ -16,6 +18,7 @@ const navLinkList = [
   { to: "group", icon: "icon-group", name: "Group" },
   { to: "room", icon: "icon-live_tv", name: "Room" },
   { to: "project", icon: "icon-note-list", name: "Project" },
+  { to: "workspace", icon: "icon-workspaces_filled", name: "Workspace" },
 ];
 
 export type TSidebarProps = TElementProps & {
@@ -39,6 +42,8 @@ export const Sidebar = memo(
       }),
     );
     const { pathname } = useLocation();
+    const { group } = useGroupSelector();
+    const { project } = useProjectSelector();
     const [currentTab, setCurrentTab] = useState(() => {
       const path = pathname.split("/")[2];
       if (!path) return 0;
@@ -54,6 +59,21 @@ export const Sidebar = memo(
       [],
     );
 
+    useEffect(
+      () => {
+        let newTab = 0;
+        const path = pathname.split("/")[2];
+        if (!path) newTab = 0;
+        else
+          newTab = navLinkList.findIndex((navLink) => navLink.to === path) || 0;
+        if (newTab !== currentTab) {
+          setCurrentTab(newTab);
+        }
+      },
+      // eslint-disable-next-line
+      [pathname],
+    );
+
     return (
       <div
         className={clsx(
@@ -65,16 +85,22 @@ export const Sidebar = memo(
         )}
         style={style}>
         {currentNavLinkList &&
-          currentNavLinkList.map((navLink, index) => (
-            <NavLink
-              key={index}
-              to={navLink.to}
-              icon={navLink.icon}
-              onClick={() => handleOnclick(index)}
-              isActive={currentTab === index}>
-              {navLink.name}
-            </NavLink>
-          ))}
+          currentNavLinkList.map((navLink, index) => {
+            if (navLink.to === "workspace" && !project)
+              return <span key={index}></span>;
+            if ((navLink.to === "room" || navLink.to === "project") && !group)
+              return <span key={index}></span>;
+            return (
+              <NavLink
+                key={index}
+                to={navLink.to}
+                icon={navLink.icon}
+                onClick={() => handleOnclick(index)}
+                isActive={currentTab === index}>
+                {navLink.name}
+              </NavLink>
+            );
+          })}
       </div>
     );
   },

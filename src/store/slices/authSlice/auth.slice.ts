@@ -26,7 +26,11 @@ const authSlice = createSlice({
       state: TAuthSliceState,
       action: PayloadAction<TUserInfo | undefined>,
     ) => {
-      console.log(action.payload);
+      if (
+        state.user &&
+        JSON.stringify(action.payload) === JSON.stringify(state.user)
+      )
+        return;
       if (action.payload) {
         state.user = {
           ...action.payload,

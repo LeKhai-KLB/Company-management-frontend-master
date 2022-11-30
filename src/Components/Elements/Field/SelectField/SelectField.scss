@@ -1,0 +1,21 @@
+.select-field__app {
+  background-color: var(--blue-gray) !important;
+  border: 2px solid var(--blue-gray) !important;
+  &::placeholder {
+    color: #ccc !important;
+  }
+  &::-webkit-input-placeholder {
+    color: #ccc !important;
+  }
+  &::-ms-input-placeholder {
+    color: #ccc !important;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc !important;
+  }
+}
+
+.select-field__normal {
+  background-color: var(--normal-grey);
+  border: 2px solid var(--normal-grey);
+}

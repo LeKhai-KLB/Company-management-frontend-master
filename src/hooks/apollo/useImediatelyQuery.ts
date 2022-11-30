@@ -12,9 +12,7 @@ export const useImediatelyQuery = <TOutput>(
   fetchOptions?: QueryHookOptions,
 ): TStateInfoExtension<TOutput> => {
   const { queryName, inputName, props } = info;
-  const variables = props
-    ? { variables: inputName ? { [inputName]: props } : props }
-    : undefined;
+  const variables = props ? { [inputName]: props } : undefined;
   const queryOptions = Object.assign(
     {
       variables: variables,

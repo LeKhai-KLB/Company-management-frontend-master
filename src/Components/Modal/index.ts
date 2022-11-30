@@ -5,4 +5,7 @@ export * from "./SidebarModal";
 export * from "./ChatModal";
 export * from "./JoinGroupModal";
 export * from "./NewGroupModal";
+export * from "./NewProjectModal";
 export * from "./ManageUsersModal";
+export * from "./NewSprintModal";
+export * from "./NewTaskModal";

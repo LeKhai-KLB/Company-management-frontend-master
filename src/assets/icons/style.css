@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?j1s3c9');
-  src:  url('fonts/icomoon.eot?j1s3c9#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?j1s3c9') format('truetype'),
-    url('fonts/icomoon.woff?j1s3c9') format('woff'),
-    url('fonts/icomoon.svg?j1s3c9#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?pege03');
+  src:  url('fonts/icomoon.eot?pege03#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?pege03') format('truetype'),
+    url('fonts/icomoon.woff?pege03') format('woff'),
+    url('fonts/icomoon.svg?pege03#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -40,6 +40,9 @@
 .icon-tabs-outline:before {
   content: "\e907";
 }
+.icon-workspaces_filled:before {
+  content: "\e911";
+}
 .icon-live_tv:before {
   content: "\e908";
 }
@@ -64,6 +67,12 @@
 .icon-folder-open:before {
   content: "\e930";
 }
+.icon-user-plus:before {
+  content: "\e973";
+}
+.icon-user-tie:before {
+  content: "\e976";
+}
 .icon-camera:before {
   content: "\e90f";
 }
@@ -73,8 +82,14 @@
 .icon-folder-upload:before {
   content: "\e934";
 }
+.icon-user:before {
+  content: "\e971";
+}
 .icon-users:before {
   content: "\e972";
+}
+.icon-user-minus:before {
+  content: "\e974";
 }
 .icon-search:before {
   content: "\e986";
@@ -108,12 +123,6 @@
 }
 .icon-bubbles2:before {
   content: "\e96d";
-}
-.icon-user-plus:before {
-  content: "\e973";
-}
-.icon-user-tie:before {
-  content: "\e976";
 }
 .icon-spinner6:before {
   content: "\e97f";

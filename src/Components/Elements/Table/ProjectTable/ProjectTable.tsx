@@ -1,34 +1,51 @@
 import { BaseTable } from "../BaseTable";
 import { ProjectActionButton } from "./ProjectActionsButton";
-import { TManageProject } from "~services/projectServices";
+import { TProjectInfo } from "~services/projectServices";
 
 export type TProjectTableProps = {
-  projectData: Array<TManageProject>;
+  projectData?: Array<TProjectInfo>;
+  loading?: boolean;
+  refetch?: () => void;
 };
 
-export const ProjectTable = ({ projectData }: TProjectTableProps) => {
+export const ProjectTable = ({
+  projectData,
+  loading,
+  refetch,
+}: TProjectTableProps) => {
   return (
     <div>
-      <BaseTable<TManageProject>
+      <BaseTable<TProjectInfo>
         data={projectData}
-        activeField="isDefaultProject"
+        loading={loading}
+        activeField="isDefault"
         columns={[
           {
             title: "Project name",
             field: "project_name",
           },
           {
-            title: "Default",
-            conditionField: "isDefaultProject",
-            conditionValue: "*",
+            title: "Create at",
+            field: "create_at",
+          },
+          {
+            title: "State",
+            conditionField: "isDefault",
+            conditionValue: "Working on",
             style: { textAlign: "center" },
           },
           {
             title: "",
             field: "id",
             style: { textAlign: "right" },
-            Cell: ({ entry: { id } }) => {
-              return <ProjectActionButton id={id} />;
+            Cell: ({ entry: { id, isDefault } }) => {
+              return (
+                <ProjectActionButton
+                  id={id}
+                  isDefault={isDefault}
+                  refetch={refetch}
+                />
+              );
             },
           },
         ]}

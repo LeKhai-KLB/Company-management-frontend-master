@@ -1,0 +1,15 @@
+.action-board {
+  width: 28%;
+  height: 250px;
+  padding: 8px;
+  overflow: auto;
+  background-color: var(--blue-gray);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-board__card-container {
+  flex: 1;
+  overflow: auto;
+}

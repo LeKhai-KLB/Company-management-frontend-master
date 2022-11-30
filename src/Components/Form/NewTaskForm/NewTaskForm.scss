@@ -1,0 +1,28 @@
+@import "~styles/mixins/media_mixins.scss";
+
+.members-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.member-tag {
+  background-color: var(--normal-grey);
+  border: 2px solid var(--normal-grey);
+  margin: 0px 8px;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  @include mix-media("extra-small") {
+    font-size: 12px;
+  }
+}
+
+.member-tag:first-child {
+  margin-left: 0px;
+}
+
+.member-tag:last-child {
+  margin-right: 0px;
+}
