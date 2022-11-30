@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { LazyImage } from "~/Components/Elements/LazyImage";
 import styles from "./Landing.module.scss";
 import img1 from "~assets/images/img1.png";
 import img2 from "~assets/images/img2.png";
