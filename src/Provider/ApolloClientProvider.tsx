@@ -5,7 +5,7 @@ import {
   from,
   HttpLink,
 } from "@apollo/client";
-import { GRAPHQL_URI } from "~constants/constants.config";
+// import { GRAPHQL_URI } from "~constants/constants.config";
 import { TWrapperProps } from "~utils/mixins.type";
 import { onError } from "@apollo/client/link/error";
 
@@ -18,7 +18,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const httpLink = new HttpLink({ uri: GRAPHQL_URI, credentials: "include" });
+const httpLink = new HttpLink({
+  uri: "https://company-management-server-production.up.railway.app/graphql",
+  credentials: "include",
+});
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
