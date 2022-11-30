@@ -20,7 +20,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const httpLink = new HttpLink({
   uri: "https://company-management-server-production.up.railway.app/graphql",
-  credentials: "true",
 });
 
 const client = new ApolloClient({
